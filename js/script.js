@@ -1,4 +1,4 @@
-var cards = document.querySelectorAll(".card-container");
+var cards = document.getElementById("card-grid");
 var images = document.getElementsByTagName('img');
 var cardFrontSides = document.querySelectorAll('.card-front-side');
 var cardBackSides = document.querySelectorAll('.card-back-side')
@@ -91,7 +91,12 @@ for (let i=0; i<cardBackSides.length; i++) {
         cardFrontSides[i].src = imagesShuffled[i]
       }
 
+      
 // Flipping the cards
-      // cards.addEventListener('click', function (event) {
-      //     console.log('it worked!')
-      //   } false);
+      cards.addEventListener('click', function (event) {
+        console.log(event)
+          if (event.target.className === "card-back-side") {
+            console.log('we in the if statement!')
+            event.target.style.display = 'none';
+          }
+        });
