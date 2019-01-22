@@ -1,10 +1,14 @@
 var cards = document.querySelectorAll(".card-container");
 var images = document.getElementsByTagName('img');
 var cardFrontSides = document.querySelectorAll('.card-front-side');
+var cardBackSides = document.querySelectorAll('.card-back-side')
 
-console.log('hey it worked!', cardFrontSides[0].src);
+// Give all cards the same background image
+for (let i=0; i<cardBackSides.length; i++) {
+  cardBackSides[i].src = 'images/cardback1.jpg'
+}
 
-// Stored images
+// All possible images 
       let imageBank = [
         'images/arya.jpg',
         'images/bran.jpg',
@@ -59,10 +63,11 @@ console.log('hey it worked!', cardFrontSides[0].src);
         return newArr
       }
       let images12 = pick12images(imageBank)
-// Images x2
+
+// Double the 12 images to make 24
       let imagesDoubled = [...images12,...images12];
 
-// Shuffle cards functionality
+// Shuffle cards function
       let shuffleCards = function (arr) {
         let newArr = [];
         let oldArr = arr.slice();
@@ -78,15 +83,15 @@ console.log('hey it worked!', cardFrontSides[0].src);
           // let pick12Random = function (cards, n) {
           //   let newCards = [];
 
-//Shuffled images 
+// Shuffle images 
       let imagesShuffled = shuffleCards(imagesDoubled);
 
-// Assigning cards to the images in order
+// Assigning images to card front src's - in order
       for (let i=0; i<cardFrontSides.length; i++) {
         cardFrontSides[i].src = imagesShuffled[i]
       }
 
 // Flipping the cards
-// cards.addEventListener('click', function (event) {
-//     console.log('it worked!')
-//   } false);
+      // cards.addEventListener('click', function (event) {
+      //     console.log('it worked!')
+      //   } false);
