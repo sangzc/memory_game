@@ -60,7 +60,7 @@ console.log('hey it worked!', cardFrontSides[0].src);
       }
       let images12 = pick12images(imageBank)
 // Images x2
-      let imagesDoubled = [...imageBank,...imageBank];
+      let imagesDoubled = [...images12,...images12];
 
 // Shuffle cards functionality
       let shuffleCards = function (arr) {
