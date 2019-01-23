@@ -1,4 +1,5 @@
-var cards = document.getElementById("card-grid");
+var cardGrid = document.getElementById("card-grid");
+var cards = document.querySelectorAll('.card-container');
 var images = document.getElementsByTagName('img');
 var cardFrontSides = document.querySelectorAll('.card-front-side');
 var cardBackSides = document.querySelectorAll('.card-back-side')
@@ -92,11 +93,67 @@ for (let i=0; i<cardBackSides.length; i++) {
       }
 
       
-// Flipping the cards
-      cards.addEventListener('click', function (event) {
-        console.log(event)
-          if (event.target.className === "card-back-side") {
-            console.log('we in the if statement!')
-            event.target.style.display = 'none';
+
+// GLOBAL VARIABLES
+        
+    // Declare variable to capture the lastFlipped card
+          let lastFlipped = ''
+    
+    // Declare hasFlipped function for later
+          let hasFlipped = function(arr){
+            for (let i=0; i<arr.length; i++) {
+              if (arr[i].childNodes[1].className === 'flipped') {
+                return true
+              }
+            }
+            return false
           }
-        });
+
+// Event Listener when you click on any of the cards
+      cardGrid.addEventListener('click', function (event) {
+        
+        // Find the image that we just we just clicked on
+          let currentImage = event.target.parentNode.childNodes[3].src;
+
+        // Step 1: Was a flipped card clicked?
+
+          if (event.target.className === "card-front-side") {
+            // if true, do nothing
+            console.log('I did nothing')
+            return
+          } 
+
+        // if false, do any cards have the class of "flipped"?
+
+            else if (!hasFlipped(cards)) {
+
+              // if no flipped cards found, then set current class to flipped
+              // and also set the value of currentImage to the current image
+
+                  event.target.className = 'flipped'
+                  lastFlipped = currentImage
+                  console.log('card was set to flipped and lastFlipped = ', lastFlipped)
+
+               // if a card has been flipped, then are the images the same?
+               // has a match been found?
+
+                  } else if (lastFlipped === currentImage) {
+
+                    // if a match has been found then set the clicked card to be flipped
+                      console.log("match found!")    
+                      event.target.className = 'flipped'
+                    // **Do a little animation here to tell the user they got it right**
+
+                    // if no match was found:
+                    //  1. keep both cards facing up for 3 seconds
+                    //  2. nothing is allowed to be clicked
+                    //  3. flip cards over after 3 seconds
+
+                  } else {
+                    console.log("match was not found!")
+                  }
+                });
+
+// Known bugs:
+// 1. for some reason last else statement is not reached if a match is not found
+//     same thing for if a match is found
