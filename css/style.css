@@ -61,6 +61,37 @@ h1{
     width: 125px;
     height: 210px;
     border-radius: 5px;
+    transition: transform 1s;
+    /* this positions the cards in 3D space created in the parent */
+    transform-style: preserve-3d;
+    /* perspective applies on the children of the element 
+       it also applies a 3D effect. how far away the object
+       from the user */
+    perspective: 1500px;
+}
+
+.card-back-side, .card-front-side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.card-container.flip {
+    transform: rotateY(180deg);
+}
+
+.card-back-side {
+    /* backface-visibility: hidden; */
+    /* z-index: 1; */
+}
+
+.flipped {
+    display: none;
+}
+
+#score {
+    
 }
 
 @media (min-width: 400px) {
@@ -88,17 +119,3 @@ h1{
     }
 }
 
-.card-back-side, .card-front-side {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-}
-
-.card-back-side {
-    z-index: 1;
-}
-
-.flipped {
-    display: none;
-}
