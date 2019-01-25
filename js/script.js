@@ -115,15 +115,17 @@ const hasFlipped = function(arr){
   }
   return false
 }
+
 // 3. Declare flipCard function 
 const flipCard = function() {
   event.target.parentElement.classList.toggle('flip');
 }
 
 // 4. Flip cards back function
-const unflipCards = function() {
+const unflipCards = function(event) {
   secondCardClassList.remove('flipped');
   firstCardClassList.remove('flipped');
+  flipCard();
   cardGrid.addEventListener('click', memoryGame);
 }
 
@@ -151,7 +153,7 @@ function memoryGame(event) {
   let currentClassList = event.target.classList;
 
   // Step 1: Did we click on an already flipped card?
-  if (currentClass === "card-front-side") {
+  if (currentClass !== "card-back-side") {
 
   // If true, then do nothing
   console.log('I did nothing')
@@ -207,7 +209,11 @@ function memoryGame(event) {
       disableCards();
       currentClassList.add('flipped');
       flipCard();
-      setTimeout(unflipCards, 2000);
+      setTimeout(function() {
+        secondCardClassList.remove('flipped');
+        firstCardClassList.remove('flipped');
+        cardGrid.addEventListener('click', memoryGame);
+      }, 2000);
       score ++;
       updateScore();
       firstCardImg = '';
