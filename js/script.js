@@ -117,15 +117,17 @@ const hasFlipped = function(arr){
 }
 
 // 3. Declare flipCard function 
-const flipCard = function() {
+const flipCard = function(event) {
   event.target.parentElement.classList.toggle('flip');
 }
 
 // 4. Flip cards back function
 const unflipCards = function(event) {
+  flipCard(event);
+  //quick and dirty way to do this is to do a settimeout and execute the next 
+  //two lines after 1s
   secondCardClassList.remove('flipped');
   firstCardClassList.remove('flipped');
-  flipCard();
   cardGrid.addEventListener('click', memoryGame);
 }
 
@@ -169,7 +171,7 @@ function memoryGame(event) {
   // 2. set the currentClass to 'flipped'
   // 3. do the flip animation
 
-    flipCard();
+    flipCard(event);
     currentClassList.add('flipped');
     firstCardImg = currentImage;
     firstCardClassList = currentClassList;
@@ -193,7 +195,7 @@ function memoryGame(event) {
       // 3. ***update score
       // 4. ***do animation here to let the user know they got it right
       console.log("match found!")    
-      flipCard();
+      flipCard(event);
       currentClassList.add('flipped');
       firstCardImg = '';
       score ++;
@@ -208,8 +210,10 @@ function memoryGame(event) {
       console.log("match was not found!")
       disableCards();
       currentClassList.add('flipped');
-      flipCard();
+      // flipCard();
       setTimeout(function() {
+        let tempEvent = event
+        flipCard(tempEvent);
         secondCardClassList.remove('flipped');
         firstCardClassList.remove('flipped');
         cardGrid.addEventListener('click', memoryGame);
