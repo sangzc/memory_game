@@ -1,5 +1,6 @@
 html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
   }
 
 *, *:before, *:after {
@@ -19,6 +20,7 @@ body {
 
 #title-section {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
     background-color: blue;
@@ -30,7 +32,7 @@ body {
 }
 
 #title-section-content {
-    padding: 0 0 100px 0;
+    padding: 0 0 200px 0;
 }
 
 h1{
@@ -38,9 +40,8 @@ h1{
     font-family: 'Cinzel', serif;
     font-size: 75px;
     color: black;
-    text-shadow: -3px 2px 6px #eeeeee;
     /* font-family: 'Cinzel', serif;
-font-family: 'IM Fell DW Pica SC', serif; */
+    font-family: 'IM Fell DW Pica SC', serif; */
 }
 
 h3 {
@@ -49,7 +50,30 @@ h3 {
 }
 
 #play-button {
-    background-color: yellow;
+    position: absolute;
+    height: 50px;
+    width: 150px;
+    bottom: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    color: #C1C1C1;
+    border-color: #C1C1C1;
+    border-width: 1px;
+    text-align: center;
+    font-size: 1.3em;
+    font-family: 'IM Fell DW Pica SC', serif;
+    cursor: pointer;
+    min-width: 150px;
+    max-width: 250px;
+}
+
+#play-button:hover {
+    background-color: rgb(193,193,193,.25);
+    color: white;
+    border-color: white;
 }
 
 #game-section {
@@ -109,24 +133,36 @@ h3 {
     display: none;
 }
 
+footer {
+    display: grid;
+    padding: 10px 10px 0 0;
+    grid-template-columns: 2fr 3fr;
+}
+
 #score {
     color: white;
+    font-size: 25px;
     font-family: 'IM Fell DW Pica SC', serif;
-    display: inline-block;
+    width: 50%;
 }
 
 #reset-button {
     background-color: transparent;
     color: white;
-    border: 1px;
     border-color: white;
+    border-width: 1px;
     text-align: center;
-    display: inline-block;
     font-size: 20px;
     font-family: 'IM Fell DW Pica SC', serif;
     cursor: pointer;
-    width: 50%;
+    min-width: 150px;
+    max-width: 250px;
 }
+
+#reset-button:hover {
+    background-color:rgb(255, 15, 15, .25);
+}
+
 @media (min-width: 400px) {
     #card-grid {
         grid-template-columns: repeat(3, minmax(115px, 1fr));
