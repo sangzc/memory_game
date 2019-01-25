@@ -4,6 +4,7 @@ const images = document.getElementsByTagName('img');
 const cardFrontSides = document.querySelectorAll('.card-front-side');
 const cardBackSides = document.querySelectorAll('.card-back-side');
 const scoreBoard = document.getElementById('score');
+const resetButton = document.getElementById('reset-button');
 
 /* -----------------SETUP CARDS LOGIC-----------------------*/
 
@@ -102,9 +103,11 @@ for (let i=0; i<cardBackSides.length; i++) {
         
 let firstCardImg = ''
 let firstCardClassList = ''
+let firstCardEvent 
 let secondCardImg = ''
 let secondCardClassList = ''
 let score = 0
+let matches = 0
     
 // 2. Declare hasFlipped function
 const hasFlipped = function(arr){
@@ -141,9 +144,6 @@ const disableCards = function() {
   cardGrid.removeEventListener('click', memoryGame);
 }
 
-// 7. Reset board function
-
-
 // Event Listener when you click on any of the cards
 cardGrid.addEventListener('click', memoryGame)
 
@@ -175,6 +175,7 @@ function memoryGame(event) {
     currentClassList.add('flipped');
     firstCardImg = currentImage;
     firstCardClassList = currentClassList;
+    firstCardEvent = event;
     score ++;
     updateScore();
 
@@ -199,7 +200,13 @@ function memoryGame(event) {
       currentClassList.add('flipped');
       firstCardImg = '';
       score ++;
+      matches ++;
       updateScore();
+
+      // Do we have a winner??
+      if (matches >= 12) {
+        console.log('YOU WON!!!')
+      }
   
     } else {
 
@@ -209,19 +216,22 @@ function memoryGame(event) {
       //  3. flip cards over after 3 seconds
       console.log("match was not found!")
       disableCards();
+      flipCard(event);
       currentClassList.add('flipped');
-      // flipCard();
       setTimeout(function() {
         let tempEvent = event
         flipCard(tempEvent);
+        flipCard(firstCardEvent);
         secondCardClassList.remove('flipped');
         firstCardClassList.remove('flipped');
         cardGrid.addEventListener('click', memoryGame);
-      }, 2000);
+      }, 1500);
       score ++;
       updateScore();
       firstCardImg = '';
+
     }
   }
 };
+
 

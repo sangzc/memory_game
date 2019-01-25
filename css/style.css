@@ -24,19 +24,21 @@ body {
     background-color: blue;
     height: 100vh;
     text-align: center;
-    background-image: url("https://i.imgur.com/jk88jJ7.jpg");
+    background-image: url('../images/background.jpg');
     background-repeat: no-repeat;
-    background-size: 100vmax;
+    background-size: cover;
 }
 
 #title-section-content {
-    
+    padding: 0 0 100px 0;
 }
 
 h1{
     margin: 0;
     font-family: 'Cinzel', serif;
     font-size: 75px;
+    color: black;
+    text-shadow: -3px 2px 6px #eeeeee;
     /* font-family: 'Cinzel', serif;
 font-family: 'IM Fell DW Pica SC', serif; */
 }
@@ -72,13 +74,18 @@ h3 {
     width: 125px;
     height: 210px;
     border-radius: 5px;
-    transition: transform 1s;
+    transition: transform .75s;
     /* this positions the cards in 3D space created in the parent */
     transform-style: preserve-3d;
     /* perspective applies on the children of the element 
        it also applies a 3D effect. how far away the object
        from the user */
     perspective: 1500px;
+}
+
+.card-container:hover{
+    box-shadow: 0 14px 28px rgba(225,225,225,0.25), 0 10px 10px rgba(225,225,225,225,.22);
+    cursor: pointer;
 }
 
 .card-back-side, .card-front-side {
@@ -89,12 +96,13 @@ h3 {
 }
 
 .card-container.flip {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
 }
 
-.card-back-side {
+.card-front-side {
+    /* z-index: -1; */
+    /* transform: rotateY(-180deg); */
     /* backface-visibility: hidden; */
-    /* z-index: 1; */
 }
 
 .flipped {
@@ -103,8 +111,22 @@ h3 {
 
 #score {
     color: white;
+    font-family: 'IM Fell DW Pica SC', serif;
+    display: inline-block;
 }
 
+#reset-button {
+    background-color: transparent;
+    color: white;
+    border: 1px;
+    border-color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    cursor: pointer;
+    width: 50%;
+}
 @media (min-width: 400px) {
     #card-grid {
         grid-template-columns: repeat(3, minmax(115px, 1fr));
