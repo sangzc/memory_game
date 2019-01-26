@@ -23,7 +23,7 @@ body {
     position: relative;
     align-items: center;
     justify-content: center;
-    background-color: blue;
+    background-color: #0D0D0D;
     height: 100vh;
     text-align: center;
     background-image: url('../images/background.jpg');
@@ -40,8 +40,6 @@ h1{
     font-family: 'Cinzel', serif;
     font-size: 75px;
     color: black;
-    /* font-family: 'Cinzel', serif;
-    font-family: 'IM Fell DW Pica SC', serif; */
 }
 
 h3 {
@@ -59,9 +57,9 @@ h3 {
     left: 0;
     right: 0;
     background-color: transparent;
-    color: #C1C1C1;
-    border-color: #C1C1C1;
-    border-width: 1px;
+    color: rgb(193,193,193,.5);;
+    border-color: rgb(193,193,193,.5);
+    border-width: 1.5px;
     text-align: center;
     font-size: 1.3em;
     font-family: 'IM Fell DW Pica SC', serif;
@@ -89,7 +87,6 @@ h3 {
 #card-grid {
     display: grid;
     background-color: #0D0D0D;
-    /* grid-template-columns: repeat(3, 1fr); */
     grid-gap: 10px;
 }
 
@@ -121,12 +118,6 @@ h3 {
 
 .card-container.flip {
     transform: rotateY(-180deg);
-}
-
-.card-front-side {
-    /* z-index: -1; */
-    /* transform: rotateY(-180deg); */
-    /* backface-visibility: hidden; */
 }
 
 .flipped {
